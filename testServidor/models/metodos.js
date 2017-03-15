@@ -4,9 +4,9 @@ var models  = require('./modelos');
 app.app.get('/clientes', function(req, res){
     models.Cliente.findAll().then(function(clientes){
         res.send(clientes);
-        res.status(res.statusCode);
+        res.status(res.statusCode).end();
     }).error(function(error){
-        res.status(res.statusCode).send(JSON.stringify({message: error})); 
+        res.status(res.statusCode).end();
     });
 });
 
@@ -19,9 +19,9 @@ app.app.post('/clientes', function(req, res){
         apellidos   : apellidos,
         cedula      : cedula
     }).then(function(){
-        res.status(res.statusCode); 
+        res.status(res.statusCode).end(); 
     }).error(function(error){
-        res.status(res.statusCode).send(JSON.stringify({message: error})); 
+        res.status(res.statusCode).end();
     });
 });
 
@@ -31,9 +31,9 @@ app.app.get('/clientes/:clienteId([0-9]+)', function(req, res){
         where : { id : clienteId }
     }).then(function(clientes){
         res.send(clientes);
-        res.status(res.statusCode);
+        res.status(res.statusCode).end();
     }).error(function(error){
-        res.status(res.statusCode).send(JSON.stringify({message: error})); 
+        res.status(res.statusCode).end();
     });
 });
 
@@ -49,9 +49,9 @@ app.app.put('/clientes/:clienteId([0-9]+)', function(req, res){
         cliente.apellidos   = apellidos;
         cliente.cedula      = cedula;
         cliente.save().then(function(){
-            res.status(res.statusCode); 
+            res.status(res.statusCode).end();
         }).error(function(error){
-            res.status(res.statusCode).send(JSON.stringify({message: error})); 
+            res.status(res.statusCode).end();
         });
 
     });
@@ -62,8 +62,11 @@ app.app.delete('/clientes/:clienteId([0-9]+)', function(req, res){
     models.Cliente.destroy({
         where : { id : clienteId }
     }).then(function(){
-        res.status(res.statusCode); 
+        res.status(res.statusCode).end();
     }).error(function(error){
-        res.status(res.statusCode).send(JSON.stringify({message: error})); 
+        res.status(res.statusCode).end();
     });
 });
+
+module.exports.app = app;
+module.exports.models = models;

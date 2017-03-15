@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('clientesdb', 'postgres', 'sysware',
+var sequelize = new Sequelize('clientesdb', 'postgres', '1234',
     {
         dialect:'postgres', host: 'localhost', port:'5432', 
         define:{ timestamps:false, freezeTableName:true }
